@@ -39,3 +39,61 @@ The script saves the filtered connections in a file inside a folder named "resul
 However, for typical log file sizes, it should perform adequately. 
 - Further optimization could be considered if performance becomes a concern, such as using data structures like dictionaries or sets for faster lookups.
 - My script uses only the standard library (datetime, os), there are no external dependencies to include in the requirements.txt. However, if you later decide to use additional libraries, you can list them in provided requirements.txt.
+
+
+# Log Generator
+
+Included in this repository is a Python script named `log_generator.py` that allows you to generate sample log files containing network connection data. This can be useful for testing the log monitoring script (`log_monitor.py`) with different scenarios and volumes of data.
+
+## Usage
+
+1. Ensure you have Python installed on your system.
+2. Navigate to the directory containing the `log_generator.py` script.
+3. Run the script with the following command:
+
+    ```
+    python log_generator.py <number_of_lines>
+    ```
+
+    Replace `<number_of_lines>` with the desired number of lines you want the log file to contain.
+
+## Example
+
+To generate a sample log file with 1000 lines, run the following command:
+
+```
+python .\log_generator.py 1000
+```
+
+# Log Monitor Script
+
+This Python script monitors log files for network connections and generates hourly reports based on the connections involving a specified target host.
+
+## Usage
+
+1. Ensure you have Python installed on your system.
+2. Clone or download the repository.
+3. Navigate to the directory containing the `log_monitor.py` script.
+4. Run the script with the following command:
+
+    ```
+    python log_monitor.py <log_file_name> <target_host>
+    ```
+
+    Replace `<log_file_name>` with the name of the log file to monitor (e.g., `log_2024-03-26_22-30-51.log`) and `<target_host>` with the hostname you want to monitor connections for (e.g., `host5`).
+
+## Sample Log File
+
+A sample log file (`log_2024-03-26_22-30-51.log`) is provided in the `log_files` directory. This file contains simulated network connections between hosts, timestamped on March 26, 2024, at 22:30:51.
+
+## Expected Result
+
+After running the script with the specified log file name and target host, you should receive an hourly report similar to the following:
+
+```
+Hourly report for 2024-03-26 23:00:37:
+Hostnames connected to host5: host6, host10, host3, host5, host7, host2, host8, host1, host4, host9
+Hostnames received connections from host5: host10, host6, host3, host7, host2, host8, host1, host4, host9
+Hostname with the most connections: host2
+```
+This report provides details on hostnames connected to the specified target host, hostnames receiving connections from the target host, and the hostname with the most connections to the target host during the last hour.
